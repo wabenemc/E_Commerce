@@ -15,6 +15,7 @@ class CategoryFixtures extends AbstractFixtures
  $category = new Category();
  
  $category->setTitle($this->faker->word());
+ $category->setSlug($this->faker->word());
  $manager->persist($category);
  $this->setReference('category_' . $i, $category);
 
