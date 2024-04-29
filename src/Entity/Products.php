@@ -53,6 +53,9 @@ class Products
     #[ORM\ManyToMany(targetEntity: orders::class, inversedBy: 'products')]
     private Collection $relation2;
 
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->relation2 = new ArrayCollection();
@@ -194,16 +197,28 @@ class Products
     {
         return $this->imageFile;
     }
-    // public function serialize()
-    // {
-    //     $this->imageFile = base64_encode($this->imageFile);
-    // }
+    public function serialize()
+    {
+        $this->imageFile = base64_encode($this->imageFile);
+    }
 
-    // public function unserialize($serialized)
-    // {
-    //     $this->imageFile = base64_decode($this->imageFile);
+    public function unserialize($serialized)
+    {
+        $this->imageFile = base64_decode($this->imageFile);
 
-    // }
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 
 
     

@@ -24,6 +24,7 @@ CategoryFixtures::class,
  $product = new  Products();
 
  $product->setAvailable($this->faker->boolean());
+ $product->setName($this->faker->name());
  $product->setDescription($this->faker->text());
  $product->setTaille($this->faker->numberBetween(0,50));
  $product->setPrice($this->faker->numberBetween(1,10));

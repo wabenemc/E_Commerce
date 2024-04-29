@@ -27,11 +27,18 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->relation1 = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +94,18 @@ class Category
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }
