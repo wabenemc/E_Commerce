@@ -17,7 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Faker\Core\Number;
 use PhpParser\Node\Stmt\Label;
 
-class ProductsCrudController extends AbstractCrudController
+class ProductsCrudController extends AbstractCrudController 
 {
     public static function getEntityFqcn(): string
     {
