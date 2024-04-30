@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Faker\Core\Number;
 use PhpParser\Node\Stmt\Label;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductsCrudController extends AbstractCrudController 
 {
@@ -40,17 +41,19 @@ class ProductsCrudController extends AbstractCrudController
         TextField::new('name')->setLabel('Name')->setHelp('Nom de votre produit'),
         TextEditorField::new('description')->setLabel('Description')->setHelp('Description de votre produit'),
         // ImageField::new('imageFile')->setLabel('image')->setHelp('image du prduit en 600x600px')->setUploadDir('Public/Asset'),
-        NumberField::new('price')->setLabel('Prix')->setHelp('Prix H.T du produit sans le label sgle £'),
+        // NumberField::new('price')->setLabel('Prix')->setHelp('Prix H.T du produit sans le label sgle £'),
         // ChoiceField::new('tva')->setLabel('Tau de TVA')->setChoices([
         //     '10'=>'10',
         //     '20'=>'20',
         //     '50'=>'50',
-        // ])
+        // ]),
         AssociationField::new('category', label:'Categorie associée'),
         DateField::new('updatedat', label:'Date'),
         TextField::new('available')->setLabel('Available'),
         NumberField::new('taille', label: 'Taille'),
         NumberField::new('stock', label:'Stocks'),
+        TextField::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms(),
+        ImageField::new('imageName')->setBasePath('/assets/images/products')->setUploadDir('public')->onlyOnIndex()
 
 
 

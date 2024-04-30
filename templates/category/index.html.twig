@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+<div class='container my-5'></div>
+    <h1>{{ category}}</h1>
+
+    <p>Cette categorie contient {{ category.products|length }} product(s).</p>
+<div class="row">
+     {% for product in category.produts %}
+
+    <div class="col-md-3">
+    {{ dump(product) }}
+    {{ product.name }}
+    </div>
+    {% endfor %}%
+</div>
+   
+        
+    
+    Produits
+
+{% endblock %}

@@ -20,7 +20,7 @@ CategoryFixtures::class,
 
  public function load(ObjectManager $manager)
  {
- for ($i = 0; $i < 10; $i ++) {
+ for ($i = 0; $i < 4; $i ++) {
  $product = new  Products();
 
  $product->setAvailable($this->faker->boolean());
