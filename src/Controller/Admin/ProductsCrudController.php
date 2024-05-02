@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -50,13 +51,15 @@ class ProductsCrudController extends AbstractCrudController
         AssociationField::new('category', label:'Categorie associée'),
         DateField::new('updatedat', label:'Date'),
         TextField::new('available')->setLabel('Available'),
+        TextField::new('description')->setLabel('Description')->setHelp('Description de votre produit'),
         NumberField::new('taille', label: 'Taille'),
         NumberField::new('stock', label:'Stocks'),
+        TextField::new('slug')
+        ->setLabel('URL')
+        ->setHelp('URL de votre catégorie générée automatiquement'),
         TextField::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms(),
-        ImageField::new('imageName')->setBasePath('/assets/images/products')->setUploadDir('public')->onlyOnIndex()
-
-
-
+        ImageField::new('imageName')->setBasePath('/assets/images/products')->setUploadDir('public')->onlyOnIndex(),
+        MoneyField::new('price', label : 'Prix')->setCurrency('EUR')
         // TextField::new('slug')
         // ->setLabel('URL')
         // ->setHelp('URL de votre categorie générée automatiquement'),

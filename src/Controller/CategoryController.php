@@ -12,8 +12,9 @@ class CategoryController extends AbstractController
     #[Route('/categorie/{slug}', name: 'app_category')]
     public function index($slug, CategoryRepository $categoryRepository): Response
     {
-        $category = $categoryRepository->findOneBy(['slug' => $slug]);
         
+        $category = $categoryRepository->findOneBy(['slug' => $slug]);
+      dd($category);
         return $this->render('category/index.html.twig', [
             'category' => $category,
         ]);

@@ -19,10 +19,10 @@ class Category
     private ?string $title = null;
 
     /**
-     * @var Collection<int, products>
+     * @var Collection<int, Products>
      */
-    #[ORM\OneToMany(targetEntity: products::class, mappedBy: 'category')]
-    private Collection $relation1;
+    #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'category')]
+    private Collection $products;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -32,13 +32,14 @@ class Category
 
     public function __construct()
     {
-        $this->relation1 = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function __toString()
     {
         return $this->name;
     }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,29 +58,29 @@ class Category
     }
 
     /**
-     * @return Collection<int, products>
+     * @return Collection<int, Products>
      */
-    public function getRelation1(): Collection
+    public function getProducts(): Collection
     {
-        return $this->relation1;
+        return $this->products;
     }
 
-    public function addRelation1(products $relation1): static
+    public function addProducts(Products $products): static
     {
-        if (!$this->relation1->contains($relation1)) {
-            $this->relation1->add($relation1);
-            $relation1->setCategory($this);
+        if (!$this->products->contains($products)) {
+            $this->products->add($products);
+            $products->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeRelation1(products $relation1): static
+    public function removeProducts(Products $products): static
     {
-        if ($this->relation1->removeElement($relation1)) {
+        if ($this->products->removeElement($products)) {
             // set the owning side to null (unless already changed)
-            if ($relation1->getCategory() === $this) {
-                $relation1->setCategory(null);
+            if ($products->getCategory() === $this) {
+                $products->setCategory(null);
             }
         }
 
@@ -109,8 +110,4 @@ class Category
 
         return $this;
     }
-
-  
-
-
 }

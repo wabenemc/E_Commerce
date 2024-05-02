@@ -3,22 +3,23 @@
 {% block title %}Hello CategoryController!{% endblock %}
 
 {% block body %}
-<div class='container my-5'></div>
-    <h1>{{ category}}</h1>
+	<div class='container my-5'>
+		<h1>{{ category }}</h1>
 
-    <p>Cette categorie contient {{ category.products|length }} product(s).</p>
-<div class="row">
-     {% for product in category.produts %}
+		<p>Cette catégorie contient {{ category.products|length }} produit(s).</p>
 
-    <div class="col-md-3">
-    {{ dump(product) }}
-    {{ product.name }}
-    </div>
-    {% endfor %}%
-</div>
-   
-        
-    
-    Produits
-
+		{{ dump(category.products) }}
+{# 			
+		<div class="row">
+			{% for product in category.products %}
+				<div class="col-md-3 text-center">
+					<a href="{{ path('app_product', { slug : product.slug} ) }}" class="text-black text-decation-none">
+						<img src="/public/assets/images/products/{{ (product.imageFile) }}" class="img-fluid">
+						<span class="d-block fw-bold ">{{ product.name }}</span>
+					</a>
+					<span class="d-block">{{ product.pricewt }}</span>
+				</div>
+			{% endfor %}
+		</div>
+	{# </div> #} 
 {% endblock %}
